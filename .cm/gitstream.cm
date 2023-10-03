@@ -22,6 +22,43 @@ automations:
       - action: explain-code-experts@v1 
         args:
           gt: 10 
+
+  list_comment:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: {{ list_summary }}
+
+  double_comment:
+    if:
+      - {{ true }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: | 
+            {{ double }}
+
+double: |
+  'heres one line'
+  'and the next'
+
+list_summary: 
+  prefix
+  {% for item in list %}
+  name {{ item.name }} - count {{ item.count }}.
+  {% endfor %}
+  suffix
+
+list:
+  - name: aaaaa
+    count: 2
+  - name: bbbb
+    count: 3
+  - name: cccc
+    count: 4
+
 # The next function calculates the estimated time to review and makes it available in the automation above.
 calc:
   etr: {{ branch | estimatedReviewTime }}
