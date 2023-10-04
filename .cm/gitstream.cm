@@ -29,7 +29,7 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: link to [google](https://www.google.com/)
+          comment: link to [google link](https://www.google.com/)
 
   double_comment:
     if:
