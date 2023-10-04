@@ -23,13 +23,13 @@ automations:
         args:
           gt: 10 
 
-  list_comment:
+  link_comment:
     if:
       - true
     run:
       - action: add-comment@v1
         args:
-          comment: {{ list_summary }}
+          comment: link to [google](https://www.google.com/)
 
   double_comment:
     if:
