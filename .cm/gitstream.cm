@@ -11,6 +11,13 @@ on:
   - commit
 automations:
   # Add a label that indicates how many minutes it will take to review the PR.
+  visibility:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: {{repo.visibility}}
   estimated_time_to_review:
     if:
       - true
