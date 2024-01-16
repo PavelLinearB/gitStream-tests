@@ -10,7 +10,7 @@ on:
   - pr_created
   - commit
 automations:
-  # Add a label that indicates how many minutes it will take to review the PR.
+  # Add a label indicating how long it will take to review the PR.
   visibility:
     if:
       - false
@@ -27,7 +27,7 @@ automations:
         args:
           label: "{{ 'x-small' if (calc.etr <= 1) else ('small' if (calc.etr <= 5) else ('medium' if (calc.etr <= 10) else ('large' if (calc.etr <= 20) else 'x-large'))) }} review"
           color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
-  # Post a comment that lists the best experts for the files that were modified.
+  # Post a comment that lists the best experts for the modified files.
   explain_code_experts:
     if:
       - false
@@ -72,7 +72,7 @@ jira_params:
   url: "pavelvaks.atlassian.net"
   username: "pavel_vaks"
   ticket: {{ branch.name | capture(regex=r/[A-Z]+\-\d+/) }}
-  token: {{ env.JIRA_TOKEN }}
+  token: "env.JIRA_TOKEN"
 
 ticketDetails: {{ "KAN-1" | getJiraIssueDetails(jira_params.username, jira_params.token, "pavelvaks.atlassian.net", []) }}
 
