@@ -13,21 +13,3 @@ automations:
         args:
           comment: |
           {{ "test" | pasha }} 
-          "{{ jira_params | safe | dump }}"
-
-  label_roadmap:  
-    if:  
-      - true
-    run:
-      - action: add-comment@v1
-        args:
-          comment: "AAAA"
-# jira: {{ ticketDetails | safe | dump }}
-
-jira_params:
-  url: "pavelvaks.atlassian.net"
-  username: "pavel_vaks"
-  ticket: {{ branch.name | capture(regex=r/[A-Z]+\-\d+/) }}
-  token: " env.JIRA_TOKEN "
-
-# ticketDetails: {{ "KAN-1" | getJiraIssueDetails(jira_params.username, jira_params.token, "pavelvaks.atlassian.net", []) }}
