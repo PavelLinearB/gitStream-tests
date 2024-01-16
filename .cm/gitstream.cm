@@ -12,4 +12,4 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: "aaa"
+          comment: {{ "aaa" | pasha }}
