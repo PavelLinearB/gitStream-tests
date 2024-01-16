@@ -13,7 +13,7 @@ automations:
   # Add a label that indicates how many minutes it will take to review the PR.
   visibility:
     if:
-      - true
+      - false
     run:
       - action: add-comment@v1
         args:
@@ -30,7 +30,7 @@ automations:
   # Post a comment that lists the best experts for the files that were modified.
   explain_code_experts:
     if:
-      - true
+      - false
     run:
       - action: explain-code-experts@v1
         args:
@@ -48,6 +48,35 @@ automations:
           args:
             comment: |
               gitStream has assigned a reviewer to increase knowledge sharing on this PR.
+    # Inform PR authors when they fail to reference Jira tickets in the PR title or description.
+  label_missing_jira_info:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+          {{ jira_params | safe | dump }}
+
+  label_roadmap:  
+    if:  
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+          jira: {{ ticketDetails | safe | dump }}
+
+
+jira_params:
+  url: "pavelvaks.atlassian.net"
+  username: "pavel_vaks"
+  ticket: {{ branch.name | capture(regex=r/[A-Z]+\-\d+/) }}
+  token: {{ env.JIRA_TOKEN }}
+
+ticketDetails: {{ "KAN-1" | getJiraIssueDetails(jira_params.username, jira_params.token, "pavelvaks.atlassian.net", []) }}
+
+
 # The next function calculates the estimated time to review and makes it available in the automation above.
 calc:
   etr: {{ branch | estimatedReviewTime }}
