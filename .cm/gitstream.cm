@@ -21,12 +21,11 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-          {{ jira_params | safe | dump }}
+          {{ jira_params | dump | safe }}
 
 
 
 jira_params:
   url: "pavelvaks.atlassian.net"
   username: "pavel_vaks"
-  ticket: "branch.name | capture(regex=r/[A-Z]+\-\d+/) "
   token: "env.JIRA_TOKEN "
