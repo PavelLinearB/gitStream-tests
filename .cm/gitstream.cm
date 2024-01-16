@@ -3,59 +3,16 @@
 # View the gitStream quickstart for more examples: https://docs.gitstream.cm/quick-start/
 manifest:
   version: 1.0
-config:
-  ignore_files:
-    - 'package-lock.json'
-on:
-  - pr_created
-  - commit
+
 automations:
-  # Add a label indicating how long it will take to review the PR.
-  visibility:
-    if:
-      - false
-    run:
-      - action: add-comment@v1
-        args:
-          comment: {{repo.visibility}}
-  estimated_time_to_review:
-    if:
-      - true
-    run:
-      - action: add-label@v1
-      # etr is defined in the last section of this example
-        args:
-          label: "{{ 'x-small' if (calc.etr <= 1) else ('small' if (calc.etr <= 5) else ('medium' if (calc.etr <= 10) else ('large' if (calc.etr <= 20) else 'x-large'))) }} review"
-          color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
-  # Post a comment that lists the best experts for the modified files.
-  explain_code_experts:
-    if:
-      - false
-    run:
-      - action: explain-code-experts@v1
-        args:
-          gt: 10
-  assign_for_kt:
-      on:
-        - label_added
-      if:
-        - {{ pr.labels | match(term='Share Knowledge') | some }}
-      run:
-        - action: add-reviewers@v1
-          args:
-            reviewers: {{ repo | codeExperts(gt=30, lt=60) | random }}
-        - action: add-comment@v1
-          args:
-            comment: |
-              gitStream has assigned a reviewer to increase knowledge sharing on this PR.
-    # Inform PR authors when they fail to reference Jira tickets in the PR title or description.
-  label_missing_jira_info:
+  test:
     if:
       - true
     run:
       - action: add-comment@v1
         args:
           comment: |
+          {{ "test" | pasha }} AAAAAAAA
           {{ jira_params | safe | dump }}
 
   label_roadmap:  
@@ -72,11 +29,6 @@ jira_params:
   url: "pavelvaks.atlassian.net"
   username: "pavel_vaks"
   ticket: {{ branch.name | capture(regex=r/[A-Z]+\-\d+/) }}
-  token: "env.JIRA_TOKEN"
+  token: " env.JIRA_TOKEN "
 
-ticketDetails: {{ "KAN-1" | getJiraIssueDetails(jira_params.username, jira_params.token, "pavelvaks.atlassian.net", []) }}
-
-
-# The next function calculates the estimated time to review and makes it available in the automation above.
-calc:
-  etr: {{ branch | estimatedReviewTime }}
+# ticketDetails: {{ "KAN-1" | getJiraIssueDetails(jira_params.username, jira_params.token, "pavelvaks.atlassian.net", []) }}
