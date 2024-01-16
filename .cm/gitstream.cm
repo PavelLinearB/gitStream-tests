@@ -12,8 +12,8 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-          {{ "test" | pasha }} AAAAAAAA
-          {{ jira_params | safe | dump }}
+          {{ "test" | pasha }} 
+          "{{ jira_params | safe | dump }}"
 
   label_roadmap:  
     if:  
@@ -21,9 +21,8 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: |
-          jira: {{ ticketDetails | safe | dump }}
-
+          comment: "AAAA"
+# jira: {{ ticketDetails | safe | dump }}
 
 jira_params:
   url: "pavelvaks.atlassian.net"
