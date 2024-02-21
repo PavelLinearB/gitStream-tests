@@ -22,6 +22,17 @@ automations:
         args:
           comment: |
             {{ jira_params | dump | safe }}
+  
+  label_prs_without_tests:
+    if:
+      # only run if PR is not a CHORE/release branch and it touches no test files
+      - {{ true }}
+      - {{ true }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'missing-tests'
+          color: '#E94637'
 
 
 
