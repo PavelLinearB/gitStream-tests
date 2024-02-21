@@ -6,13 +6,13 @@ manifest:
   version: 1.0
 
 automations:
-  test:
-    if:
-      - true
-    run:
-      - action: add-comment@v1
-        args:
-          comment: {{ "aaa" | pasha | dump }}
+  # test:
+  #  if:
+  #    - true
+  #  run:
+  #    - action: add-comment@v1
+  #      args:
+  #        comment: {{ "aaa" | pasha | dump }}
 
   print_params:
     if:
@@ -26,15 +26,23 @@ automations:
   label_prs_without_tests:
     if:
       # only run if PR is not a CHORE/release branch and it touches no test files
-      - {{ true }}
-      - {{ true }}
+      - {{ has.new_files and (not (is.chore or is.release_branch)) }}
+      - {{ files | match(regex=r/[^a-zA-Z0-9](spec|test|tests)[^a-zA-Z0-9]/) | nope }}
     run: 
       - action: add-label@v1
         args:
           label: 'missing-tests'
           color: '#E94637'
 
+has:
+  new_files: {{ branch.diff.files_metadata | filter(attr='new_file', regex=r/\.js$|\.ts$|\.tsx/) | some }}
+  github:
+    chore_in_branch: {{ branch.name | includes(regex=r/\b(CHORE|chore):.*/) }}
+    chore_in_title: {{ pr.title | includes(regex=r/\b(CHORE|chore):.*/) }}
 
+is:
+  release_branch: {{ branch.name |  includes(regex=r/^\b(release)\/.*/) }}
+  chore: {{ has.github.chore_in_branch or has.github.chore_in_title }}
 
 jira_params:
   url: "pavelvaks.atlassian.net"
