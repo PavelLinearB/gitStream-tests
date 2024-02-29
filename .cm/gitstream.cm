@@ -17,6 +17,7 @@ automations:
   print_params:
     if:
       - {{ pr.comments | some }}
+      - {{ pr.labels | some }}
     run:
       - action: add-comment@v1
         args:
