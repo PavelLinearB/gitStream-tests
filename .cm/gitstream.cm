@@ -26,12 +26,11 @@ automations:
 
   trigger_check:
     if:
-      - true
+      - {{ pr.title | capture(regex=r/test/) }}
     run:
-      - action: add-comment@v1
+      - action: add-label@v1
         args:
-          comment: |
-            {{ pr.title | dump | safe }}
+          label: "test :)"
   
   
 jira_params:
