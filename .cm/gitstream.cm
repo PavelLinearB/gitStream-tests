@@ -31,7 +31,7 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            {{ pr.comments | dump | safe }}
+            {{ pr.title | dump | safe }}
   
   
 jira_params:
