@@ -31,6 +31,17 @@ automations:
       - action: add-label@v1
         args:
           label: "test :)"
+
+  send_webhook_message:
+    if:
+      - true
+    run:
+      - action: send-http-request@v1
+        args:
+          url: "https://webhook.site/e87125fc-3c2f-46a1-8e6f-0270b5c5060d"
+          method: POST
+          headers: '{"Content-type": "application/json", "Authorization": "Bearer LALA"}'
+          body: '{ "roomId": "PAPA", "text": "This PR has been waiting and was created by {{ pr.author }} for {{ pr.url }}"}'
   
   
 jira_params:
