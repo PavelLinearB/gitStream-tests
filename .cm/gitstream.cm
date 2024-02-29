@@ -22,28 +22,17 @@ automations:
         args:
           comment: |
             {{ jira_params | dump | safe }}
-  
-  label_prs_without_tests:
+
+  trigger_check:
     if:
-      # only run if PR is not a CHORE/release branch and it touches no test files
-      - {{ has.new_files and (not (is.chore or is.release_branch)) }}
-      - {{ files | match(regex=r/[^a-zA-Z0-9](spec|test|tests)[^a-zA-Z0-9]/) | nope }}
-    run: 
-      - action: add-label@v1
+      - true
+    run:
+      - action: add-comment@v1
         args:
-          label: 'missing-tests'
-          color: '#E94637'
-
-has:
-  new_files: {{ branch.diff.files_metadata | filter(attr='new_file', regex=r/\.js$|\.ts$|\.tsx/) | some }}
-  github:
-    chore_in_branch: {{ branch.name | includes(regex=r/\b(CHORE|chore):.*/) }}
-    chore_in_title: {{ pr.title | includes(regex=r/\b(CHORE|chore):.*/) }}
-
-is:
-  release_branch: {{ branch.name |  includes(regex=r/^\b(release)\/.*/) }}
-  chore: {{ has.github.chore_in_branch or has.github.chore_in_title }}
-
+          comment: |
+            {{ pr | dump | safe }}
+  
+  
 jira_params:
   url: "pavelvaks.atlassian.net"
   username: "pavel_vaks"
