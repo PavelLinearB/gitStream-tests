@@ -16,7 +16,7 @@ automations:
 
   print_params:
     if:
-      - true
+      - {{ pr.comments | some }}
     run:
       - action: add-comment@v1
         args:
@@ -30,7 +30,7 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            {{ pr | dump | safe }}
+            {{ pr.comments | dump | safe }}
   
   
 jira_params:
