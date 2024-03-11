@@ -31,6 +31,17 @@ automations:
         args:
           label: "test :)"
 
+  draft_label:
+    on:
+      - pr_created
+      - commit
+    if:
+      - true
+    run:
+      - action: add-label@v1
+        args:
+          label: "DRAFT"
+
   send_webhook_message:
     if:
       - true
