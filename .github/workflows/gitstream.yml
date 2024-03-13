@@ -35,6 +35,8 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     name: gitStream workflow automation
+    env:
+      JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
     steps:
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@stage
