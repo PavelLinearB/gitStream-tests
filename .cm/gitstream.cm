@@ -14,14 +14,18 @@ automations:
   #      args:
   #        comment: {{ "aaa" | pasha | dump }}
 
-  print_params:
+  print_jira:
     if:
-      - {{ pr.labels | match(list=['test', 'abcde']) | nope }}
+      - true
     run:
       - action: add-comment@v1
         args:
           comment: |
             {{ jira_params | dump | safe }}
+      - action: add-comment@v1
+        args:
+          comment: |
+            {{ jira_details }}
 
   trigger_check:
     if:
@@ -57,4 +61,7 @@ automations:
 jira_params:
   url: "pavelvaks.atlassian.net"
   username: "pavel_vaks"
-  token: "env.JIRA_TOKEN "
+  token: "env.JIRA_TOKEN"
+  issue_key: {{ branch.name | capture(regex=r/[A-Z]+\-\d+/) }}
+
+jira_details: {{ jira_params.issue_key | getJiraIssueDetails(username, token, url) }}
