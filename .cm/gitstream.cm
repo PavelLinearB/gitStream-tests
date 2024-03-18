@@ -14,18 +14,18 @@ automations:
   #      args:
   #        comment: {{ "aaa" | pasha | dump }}
 
-  print_jira:
-    if:
-      - true
-    run:
-      - action: add-comment@v1
-        args:
-          comment: |
-            {{ jira_params | dump | safe }}
-      - action: add-comment@v1
-        args:
-          comment: |
-            {{ jira_details }}
+  # print_jira:
+  #  if:
+  #    - true
+  #  run:
+  #    - action: add-comment@v1
+  #      args:
+  #        comment: |
+  #          {{ jira_params | dump | safe }}
+  #    - action: add-comment@v1
+  #      args:
+  #        comment: |
+  #          {{ jira_details }}
 
   trigger_check:
     if:
