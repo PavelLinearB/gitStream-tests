@@ -13,7 +13,7 @@ automations:
   #    - action: add-comment@v1
   #      args:
   #        comment: {{ "aaa" | pasha | dump }}
-
+  #
   # print_jira:
   #  if:
   #    - true
@@ -74,5 +74,3 @@ jira_params:
   username: "pavel_vaks"
   token: "env.JIRA_TOKEN"
   issue_key: {{ branch.name | capture(regex=r/[A-Z]+\-\d+/) }}
-
-# jira_details: {{ jira_params.issue_key | getJiraIssueDetails(username, token, url) }}
