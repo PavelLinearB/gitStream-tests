@@ -1,0 +1,13 @@
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+jobs:
+  sleepy:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Sleep for 10s
+        uses: juliangruber/sleep-action@v2.0.0
+        with:
+          time: 10s
