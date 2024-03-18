@@ -54,7 +54,7 @@ automations:
       - action: add-label@v1
         args:
           label: 'approved-audit-fix'
-          color: '{{ colors.green }}'
+          color: '008000'
       - action: merge@v1
 
   send_webhook_message:
@@ -63,7 +63,7 @@ automations:
     run:
       - action: send-http-request@v1
         args:
-          url: "https://webhook.site/e87125fc-3c2f-46a1-8e6f-0270b5c5060d"
+          url: "https://webhook.site/63365e5d-d986-4147-892e-fff75e6c2132"
           method: POST
           headers: '{"Content-type": "application/json", "Authorization": "Bearer LALA"}'
           body: '{ "roomId": "PAPA", "text": "This PR has been waiting and was created by {{ pr.author }} for {{ pr.url }}"}'
