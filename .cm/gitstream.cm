@@ -75,4 +75,4 @@ jira_params:
   token: "env.JIRA_TOKEN"
   issue_key: {{ branch.name | capture(regex=r/[A-Z]+\-\d+/) }}
 
-jira_details: {{ jira_params.issue_key | getJiraIssueDetails(username, token, url) }}
+# jira_details: {{ jira_params.issue_key | getJiraIssueDetails(username, token, url) }}
