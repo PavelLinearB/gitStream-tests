@@ -46,16 +46,16 @@ automations:
         args:
           label: "DRAFT"
 
-  approve_and_merge_audit_fix_prs:
-    if:
-      - {{ branch.name | includes(term="merge") }}
-    run:
-      - action: approve@v1
-      - action: add-label@v1
-        args:
-          label: 'approved-audit-fix'
-          color: '008000'
-      - action: merge@v1
+  # approve_and_merge_audit_fix_prs:
+  #  if:
+  #    - {{ branch.name | includes(term="merge") }}
+  #  run:
+  #    - action: approve@v1
+  #    - action: add-label@v1
+  #      args:
+  #        label: 'approved-audit-fix'
+  #        color: '008000'
+  #  x    - action: merge@v1
 
   safe_changes:
     on:
@@ -68,16 +68,16 @@ automations:
           labels: ['safe-changes']
       - action: approve@v1
 
-  send_webhook_message:
-    if:
-      - true
-    run:
-      - action: send-http-request@v1
-        args:
-          url: "https://webhook.site/63365e5d-d986-4147-892e-fff75e6c2132"
-          method: POST
-          headers: '{"Content-type": "application/json", "Authorization": "Bearer LALA"}'
-          body: '{ "roomId": "PAPA", "text": "This PR has been waiting and was created by {{ pr.author }} for {{ pr.url }}"}'
+  # send_webhook_message:
+  #  if:
+  #    - true
+  #  run:
+  #    - action: send-http-request@v1
+  #      args:
+  #        url: "https://webhook.site/63365e5d-d986-4147-892e-fff75e6c2132"
+  #        method: POST
+  #        headers: '{"Content-type": "application/json", "Authorization": "Bearer LALA"}'
+  #        body: '{ "roomId": "PAPA", "text": "This PR has been waiting and was created by {{ pr.author }} for {{ pr.url }}"}'
   
   
 jira_params:
