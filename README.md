@@ -1,2 +1,3 @@
 # gitStream-tests
 aaaaa
+mergeee
