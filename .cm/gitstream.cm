@@ -46,27 +46,27 @@ automations:
         args:
           label: "DRAFT"
 
-  # approve_and_merge_audit_fix_prs:
-  #  if:
-  #    - {{ branch.name | includes(term="merge") }}
-  #  run:
-  #    - action: approve@v1
-  #    - action: add-label@v1
-  #      args:
-  #        label: 'approved-audit-fix'
-  #        color: '008000'
-  #  x    - action: merge@v1
-
-  safe_changes:
-    on:
-      - merge
+  approve_and_merge_audit_fix_prs:
     if:
-      - {{ is.formatting or is.docs or is.tests or is.images }}
-    run: 
-      - action: add-labels@v1
-        args:
-          labels: ['safe-changes']
+      - {{ branch.name | includes(term="merge") }}
+    run:
       - action: approve@v1
+      - action: add-label@v1
+        args:
+          label: 'approved-audit-fix'
+          color: '008000'
+      - action: merge@v1
+
+  # safe_changes:
+  #  on:
+  #    - merge
+  #  if:
+  #    - {{ is.formatting or is.docs or is.tests or is.images }}
+  #  run: 
+  #    - action: add-labels@v1
+  #      args:
+  #        labels: ['safe-changes']
+  #    - action: approve@v1
 
   # send_webhook_message:
   #  if:
