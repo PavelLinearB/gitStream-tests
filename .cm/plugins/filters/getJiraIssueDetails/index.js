@@ -33,5 +33,5 @@ const getIssueDetails = async (issueIdOrKey, userEmail, jiraApiToken, jiraInstan
 
 module.exports = {
     async: true,
-    filter: getJiraIssueById
+    filter: getJiraIssueDetails
 };
