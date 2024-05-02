@@ -3,4 +3,4 @@ mergeeeeeeeee2
 mergeeeeeeee
 
 console.log("lalala");
-newcom
+newcome
