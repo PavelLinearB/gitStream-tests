@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const getIssueDetails = async (issueIdOrKey, userEmail, jiraApiToken, jiraInstanceDomain, customFields = [], callback) => {
+const getJiraIssueDetails = async (issueIdOrKey, userEmail, jiraApiToken, jiraInstanceDomain, customFields = [], callback) => {
     console.log(`getIssueDetails: issueIdOrKey - ${issueIdOrKey}, userEmail - ${userEmail}, jiraApiToken - ${jiraApiToken}, jiraInstanceDomain - ${jiraInstanceDomain}`);
     
     const defaultFields = ['summary', 'description', 'issuetype'];
