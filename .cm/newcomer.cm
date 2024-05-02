@@ -1,0 +1,21 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  # Help newcomers find mentors to guide them.
+  welcome_newcomer:
+    # If the PR author made their first contirbution on the current day
+    if:
+      - {{ repo.author_age < 1 and repo.age > 0 }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'new-contributor'
+          color: '#186AFF'
+      - action : add-comment@v1
+        args:
+          comment: |
+            Hello {{ pr.author }} 👋 Thanks for making your first PR in {{repo.name}}!
+            One of the code owners will be along shortly, feel free to reach out to them if you have questions.
