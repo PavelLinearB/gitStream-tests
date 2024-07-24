@@ -53,7 +53,7 @@ automations:
       - action: approve@v1
       - action: add-label@v1
         args:
-          label: 'approved-audit-fix'
+          label: 'auto-approved'
           color: '008000'
       - action: merge@v1
 
