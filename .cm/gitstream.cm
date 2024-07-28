@@ -55,7 +55,6 @@ automations:
         args:
           label: 'auto-approved'
           color: '008000'
-      - action: merge@v1
 
   # safe_changes:
   #  on:
