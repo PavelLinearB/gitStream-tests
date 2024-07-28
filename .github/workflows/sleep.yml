@@ -6,7 +6,7 @@ jobs:
   sleepy:
     runs-on: ubuntu-20.04
     steps:
-      - name: Sleep for 10s
+      - name: Sleep for 5s
         uses: juliangruber/sleep-action@v2.0.0
         with:
-          time: 50m
+          time: 5s
