@@ -43,7 +43,7 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: {{ lala }}
+          comment: {{ branch.num_of_commits }}
 
   approve_and_merge_audit_fix_prs:
     if:
