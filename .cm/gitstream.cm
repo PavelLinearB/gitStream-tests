@@ -43,7 +43,7 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: "lala"
+          comment: {{ [1,2,3,4,5,6,7,8,9] | random }}
 
   approve_and_merge_audit_fix_prs:
     if:
