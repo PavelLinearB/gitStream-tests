@@ -35,16 +35,15 @@ automations:
         args:
           label: "test :)"
 
-  draft_label:
+  test_comment:
     on:
-      - pr_created
       - commit
     if:
       - true
     run:
-      - action: add-label@v1
+      - action: add-comment@v1
         args:
-          label: "DRAFT"
+          comment: "lala"
 
   approve_and_merge_audit_fix_prs:
     if:
