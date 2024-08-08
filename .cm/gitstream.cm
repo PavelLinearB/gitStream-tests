@@ -43,7 +43,7 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: {{ branch.num_of_commits | dump }}
+          comment: {{ branch.num_of_commits | toBase64String }}
 
   approve_and_merge_audit_fix_prs:
     if:
