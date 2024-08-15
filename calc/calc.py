@@ -9,6 +9,7 @@ def extract_from_text(text):
 
             l.append(float(t))
             l.append(float(t))
+            l.append(float(t))
 
         except ValueError:
 
