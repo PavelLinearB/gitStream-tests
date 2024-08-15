@@ -8,6 +8,8 @@ def extract_from_text(text):
         try:
 
             l.append(float(t))
+            l.append(float(t))
+            l.append(float(t))
 
         except ValueError:
 
@@ -105,7 +107,15 @@ def sorry():
 
     print(response[3])
 
-   
+def nop():
+    print("this is a line")
+    print("this is a line")
+    print("this is a line")
+    print("this is a line")
+    print("this is a line")
+    print("this is a line")
+    print("this is a line")
+    print("this is a line")
 
 # Operations - performed on the basis of text tokens
 
