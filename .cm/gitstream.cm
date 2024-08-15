@@ -56,16 +56,15 @@ automations:
           color: '008000'
       - action: merge@v1
 
-  # safe_changes:
-  #  on:
-  #    - merge
-  #  if:
-  #    - {{ is.formatting or is.docs or is.tests or is.images }}
-  #  run: 
-  #    - action: add-labels@v1
-  #      args:
-  #        labels: ['safe-changes']
-  #    - action: approve@v1
+  safe_changes:
+    if:
+      - {{ is.safe }}
+    run:
+      - action: approve@v1
+
+      - action: add-label@v1
+        args:
+          label: 'safe-changes'
 
   # send_webhook_message:
   #  if:
@@ -86,7 +85,8 @@ jira_params:
   issue_key: {{ branch.name | capture(regex=r/[A-Z]+\-\d+/) }}
 
 is:
-  formatting: {{ source.diff.files | isFormattingChange }}
   docs: {{ files | allDocs }}
   tests: {{ files | allTests }}
-  images: {{ files | allImages }}
+  asset: {{ files | match(regex=r/\.(png|svg|gif|css)$/) | every }}
+  formatting: {{ source.diff.files | isFormattingChange }}
+  safe: {{ is.docs or is.tests or is.asset or is.formatting }}
