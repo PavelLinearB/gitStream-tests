@@ -105,7 +105,15 @@ def sorry():
 
     print(response[3])
 
-   
+def nop():
+    print("this is a line")
+    print("this is a line")
+    print("this is a line")
+    print("this is a line")
+    print("this is a line")
+    print("this is a line")
+    print("this is a line")
+    print("this is a line")
 
 # Operations - performed on the basis of text tokens
 
