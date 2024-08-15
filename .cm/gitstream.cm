@@ -66,6 +66,46 @@ automations:
         args:
           label: 'safe-changes'
 
+  docs:
+    if:
+      - {{ is.docs }}
+    run:
+      - action: approve@v1
+
+      - action: add-label@v1
+        args:
+          label: 'docs-changes'
+
+  tests:
+    if:
+      - {{ is.tests }}
+    run:
+      - action: approve@v1
+
+      - action: add-label@v1
+        args:
+          label: 'tests-changes'
+
+  formatting:
+    if:
+      - {{ is.formatting }}
+    run:
+      - action: approve@v1
+
+      - action: add-label@v1
+        args:
+          label: 'formatting-changes'
+
+  safe_changes:
+    if:
+      - {{ is.safe }}
+    run:
+      - action: approve@v1
+
+      - action: add-label@v1
+        args:
+          label: 'safe-changes'
+
   # send_webhook_message:
   #  if:
   #    - true
