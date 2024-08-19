@@ -6,7 +6,7 @@ def extract_from_text(text):
     for t in text.split(' '):
 
         try:
-            print: ("test")
+            print: ("aaa")
             print: ("test")
             print: ("test")
             print: ("test")
