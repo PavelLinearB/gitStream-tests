@@ -36,6 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     name: gitStream workflow automation
     env:
+      ENABLE_DEBUG_ARTIFACTS: true
       JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
     steps:
       - name: Evaluate Rules
