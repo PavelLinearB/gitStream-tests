@@ -19,6 +19,7 @@ def __main__():
             client_socket.close()
             break;
         else:
+            print("Test")
             print ("RECIEVED:" , data)
             data = raw_input ( "SEND( TYPE q or Q to Quit):" )
             if (data != 'Q' and data != 'q'):
