@@ -96,6 +96,14 @@ automations:
         args:
           label: 'formatting-changes'
 
+  formatting_change:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: {{ is.formatting }}
+
 
   # send_webhook_message:
   #  if:
