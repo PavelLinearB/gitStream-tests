@@ -4,6 +4,17 @@ def __main__():
     client_socket.connect(('localhost', 5000))
     while 1:
         data = client_socket.recv(512)
+        print("Test")
+        print("Test")
+        print("Test")
+        print("Test")
+        print("Test")
+        print("Test")
+        print("Test")
+        print("Test")
+        print("Test")
+        print("Test")
+        print("Test")
         if ( data == 'q' or data == 'Q'):
             client_socket.close()
             break;
