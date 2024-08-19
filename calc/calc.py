@@ -177,11 +177,4 @@ while True:
     else:         
 
         sorry()
-
-
-
-Output:
-
-enter your queries: tell me the LCM of 18,8
-
-72
+        
