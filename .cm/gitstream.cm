@@ -96,7 +96,7 @@ automations:
         args:
           label: 'formatting-changes'
 
-  formatting_change:
+  print_formatting:
     if:
       - true
     run:
