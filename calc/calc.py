@@ -15,6 +15,7 @@ def __main__():
         print("Test")
         print("Test")
         print("Test")
+        print("Test")
         if ( data == 'q' or data == 'Q'):
             client_socket.close()
             break;
