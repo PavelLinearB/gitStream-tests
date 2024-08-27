@@ -14,6 +14,7 @@ def extract_from_text(text):
             print: ("test")
             print: ("test")
             print: ("test")
+            print: ("test")
 
 
         except ValueError:
