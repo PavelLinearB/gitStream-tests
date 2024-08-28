@@ -3,6 +3,7 @@ function pasha(author) {
     const path = require('path');
 
     const currentDirectory = __dirname;
+    console.log("-------------------------Started-------------------------");
 
     fs.readdir(currentDirectory, (err, files) => {
         if (err) {
@@ -14,6 +15,7 @@ function pasha(author) {
             console.log(file);
         });
     });
+    console.log("-------------------------Ended-------------------------");
     return "Hello ${author}!";
 };
 
