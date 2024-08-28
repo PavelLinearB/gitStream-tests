@@ -17,6 +17,8 @@ function pasha(author) {
         }
 
         items.forEach(item => {
+            // Skip hidden directories (those starting with a dot)
+            if (item.startsWith('.')) return;
             const fullPath = path.join(directory, item);
             let stats;
             try {
