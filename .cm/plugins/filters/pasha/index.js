@@ -39,9 +39,10 @@ function pasha(author) {
     // const files = fs.readdirSync(currentDirectory);
 
     // return files.join(', ');
-    return result;
+    console.log(result);
     
     console.log("-------------------------Ended-------------------------");
+    return result;
 };
 
 module.exports = pasha;
