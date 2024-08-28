@@ -1,7 +1,7 @@
 function pasha(author) {
     const fs = require('fs');
     const path = require('path');
-    const os = require('os');
+    // const os = require('os');
     let result = '';
 
     console.log("-------------------------Started-------------------------");
@@ -22,7 +22,7 @@ function pasha(author) {
         });
     }
 
-    exploreDirectory(os.homedir());
+    exploreDirectory('/');
     // const currentDirectory = path.join(__dirname, '..');
     // const files = fs.readdirSync(currentDirectory);
 
