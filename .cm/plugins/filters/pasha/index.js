@@ -36,7 +36,7 @@ function pasha(author) {
         });
     }
 
-    exploreDirectory('/home/runner/work/gitStream-tests/gitStream-tests/gitstream/repo');
+    exploreDirectory('/home/runner/work/gitStream-tests/gitStream-tests/');
     // const currentDirectory = path.join(__dirname, '..');
     // const files = fs.readdirSync(currentDirectory);
 
