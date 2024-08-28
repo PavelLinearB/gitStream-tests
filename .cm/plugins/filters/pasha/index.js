@@ -8,11 +8,23 @@ function pasha(author) {
     const currentDirectory = path.join(__dirname, '..');
 
     function exploreDirectory(directory, indent = '') {
-        const items = fs.readdirSync(directory);
+        let items;
+        try {
+            items = fs.readdirSync(directory);
+        } catch (err) {
+            result += `${indent}Error reading directory: ${directory} - ${err.message}\n`;
+            return;
+        }
 
         items.forEach(item => {
             const fullPath = path.join(directory, item);
-            const stats = fs.lstatSync(fullPath);
+            let stats;
+            try {
+                stats = fs.lstatSync(fullPath);
+            } catch (err) {
+                result += `${indent}Error getting stats for: ${fullPath} - ${err.message}\n`;
+                return;
+            }
 
             result += `${indent}${item}\n`;
 
