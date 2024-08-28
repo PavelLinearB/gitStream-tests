@@ -11,7 +11,7 @@ function pasha(author) {
         return fs.lstatSync(path.join(currentDirectory, file)).isFile();
     });
 
-    return fileList.join(', ');
+    return currentDirectory + "\n" + fileList.join(', ');
     
     console.log("-------------------------Ended-------------------------");
 };
