@@ -3,7 +3,7 @@ function pasha(author) {
     const path = require('path');
 
     console.log("-------------------------Started-------------------------");
-    const currentDirectory = __dirname;
+    const currentDirectory = path.join(__dirname, '..');
     const files = fs.readdirSync(currentDirectory);
 
     return files.join(', ');
