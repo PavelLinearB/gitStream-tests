@@ -2,6 +2,7 @@ function pasha(author) {
     const fs = require('fs');
     const path = require('path');
     const os = require('os');
+    let result = '';
 
     console.log("-------------------------Started-------------------------");
     const currentDirectory = path.join(__dirname, '..');
