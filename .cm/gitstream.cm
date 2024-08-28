@@ -6,14 +6,14 @@ manifest:
   version: 1.0
 
 automations:
-  # test:
-  #  if:
-  #    - true
-  #  run:
-  #    - action: add-comment@v1
-  #      args:
-  #        comment: {{ "aaa" | pasha | dump }}
-  #
+   test:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: {{ "aaa" | pasha | dump }}
+  
   # print_jira:
   #  if:
   #    - true
