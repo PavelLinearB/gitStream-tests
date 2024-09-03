@@ -12,7 +12,9 @@ automations:
     run:
       - action: add-comment@v1
         args:
-          comment: {{ "aaa" | pasha }}
+          comment: |
+          # lala
+          {{ "aaa" | pasha }}
   
   # print_jira:
   #  if:
