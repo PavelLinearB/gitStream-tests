@@ -18,6 +18,9 @@ automations:
       - action: set-required-approvals@v1
         args:
           approvals: 2
+      - action: require-reviewers@v1
+        args:
+          reviewers: [MishaKav]
 
   gm_reviewer:
     on:
