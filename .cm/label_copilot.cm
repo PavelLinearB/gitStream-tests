@@ -4,10 +4,6 @@ manifest:
   version: 1.0
 
 
-triggers:
-  exclude:
-    branch:
-      - r/(Dependabot|dependabot|Renovate|renovate)/
 
 automations:
   # You should use this automation in conjunction with comment_copilot_prompt.cm
