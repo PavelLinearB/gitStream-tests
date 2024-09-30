@@ -89,7 +89,7 @@ automations:
   renovate_auto_approval:
     if:
       - {{ branch.name | includes(list=[ 'minor', 'patch' ]) }}
-      - {{ files | match(list=files_auto_approved) }}
+      - {{ true }}
     run:
       - action: add-label@v1
         args:
