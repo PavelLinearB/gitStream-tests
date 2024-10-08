@@ -78,7 +78,7 @@ automations:
   # Add a label if branch is a version bump by renovate bot
   renovate:
     if:
-      - {{ branch.author_name | includes(term='Renovate') }}
+      - true
     run:
       - action: add-label@v1
         args:
