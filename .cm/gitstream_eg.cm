@@ -1,0 +1,20 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
+automations:
+  safe_changes:
+    # Triggered for any changes that only affect formatting, documentation, tests, or images
+    if:
+      - {{ pr.labels | match(term="stale") | nope }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'safe-change'
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR is considered a safe change and has been automatically approved.
+
