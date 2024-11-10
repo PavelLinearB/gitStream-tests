@@ -4,6 +4,7 @@ manifest:
   version: 1.0
 
 automations:
+  {% if pr.labels.includes("stale") %}
   safe_changes:
     # Triggered for any changes that only affect formatting, documentation, tests, or images
     if:
@@ -17,4 +18,4 @@ automations:
         args:
           comment: |
             This PR is considered a safe change and has been automatically approved.
-
+  {% endif %}
