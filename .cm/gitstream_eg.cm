@@ -4,7 +4,7 @@ manifest:
   version: 1.0
 
 automations:
-  {% if pr.labels | match(term="stale") | nope %}
+  {% if pr.labels | match(term='stale') | nope %}
   safe_changes:
     # Triggered for any changes that only affect formatting, documentation, tests, or images
     if:
