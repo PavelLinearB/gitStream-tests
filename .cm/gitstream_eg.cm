@@ -7,8 +7,6 @@ automations:
   {% if pr.labels | match(term='stale') | nope %}
   safe_changes:
     # Triggered for any changes that only affect formatting, documentation, tests, or images
-    if:
-      - {{ pr.labels | match(term="stale") | nope }}
     run: 
       - action: add-label@v1
         args:
