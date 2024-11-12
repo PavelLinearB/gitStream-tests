@@ -17,7 +17,6 @@ automations:
         args:
           comment: |
             This PR is considered a safe change and has been automatically approved.
-    {% endif %}
 
   label123:
     if:
