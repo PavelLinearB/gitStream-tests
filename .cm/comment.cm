@@ -1,0 +1,26 @@
+automations:
+  warn:
+    if:
+      - {{ pr.labels | match(term="warn") | some }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            🚨 **Warning: Approaching Monthly Automation Limit**
+            **Monthly PRs automated: 920/1000**
+            Your organization has used over 90% of its monthly quota for gitStream automations. Once the quota is reached, new pull requests for this month will not trigger gitStream automations and will be marked as “Skipped.”
+            To avoid interruptions, consider optimizing your automation usage or upgrading your plan by [contacting LinearB](https://linearb.io/book-a-demo).
+
+
+  error:
+    if:
+      - {{ pr.labels | match(term="error") | some }}
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            🚨 **gitStream Monthly Automation Limit Reached** 🚨 
+            
+            Your organization has exceeded the number of pull requests allowed for automation with gitStream.
+            **Monthly PRs automated: 1000/1000**
+            To continue automating your PR workflows and unlock additional features, please [contact LinearB](https://linearb.io/book-a-demo).
