@@ -10,3 +10,15 @@ automations:
         args:
           comment: |
             This PR is a large change and requires 3 reviews.
+
+  add_dependabot_config:
+    if:
+      - {{ pr.labels | match(term="webhook") | some }}
+    run:
+      - action: run-github-workflow@v1
+        args:
+          owner: {{repo.owner}}
+          repo: Selective-ci
+          workflow: .github/workflows/e2e.yml
+          check_name: "E2E Tests"
+          stop_ongoing_workflow: true
