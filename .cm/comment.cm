@@ -20,5 +20,5 @@ automations:
           owner: {{repo.owner}}
           repo: Selective-ci
           workflow: .github/workflows/e2e.yml
-          check_name: "E2E Tests"
+          ref: PavelLinearB-patch-18
           stop_ongoing_workflow: true
