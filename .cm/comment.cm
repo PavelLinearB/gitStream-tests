@@ -1,8 +1,12 @@
 automations:
-  pr_base_targert:
+  additional_review_for_large_pr:
     if:
       - true
     run:
+      - action: set-required-approvals@v1
+        args:
+          approvals: 3
       - action: add-comment@v1
         args:
-          comment: "{{ branch.base }} -> {{ pr.target }}"
+          comment: |
+            This PR is a large change and requires 3 reviews.
