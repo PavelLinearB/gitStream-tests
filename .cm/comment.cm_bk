@@ -1,24 +1,9 @@
 automations:
-  additional_review_for_large_pr:
+  lalacomment:
     if:
       - true
     run:
-      - action: set-required-approvals@v1
-        args:
-          approvals: 3
       - action: add-comment@v1
         args:
           comment: |
-            This PR is a large change and requires 3 reviews.
-
-  add_dependabot_config:
-    if:
-      - {{ pr.labels | match(term="webhook") | some }}
-    run:
-      - action: run-github-workflow@v1
-        args:
-          owner: {{repo.owner}}
-          repo: Selective-ci
-          workflow: .github/workflows/e2e.yml
-          ref: PavelLinearB-patch-18
-          stop_ongoing_workflow: true
+            LALALALALALALA.
