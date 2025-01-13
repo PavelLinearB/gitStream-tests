@@ -15,8 +15,7 @@ automations:
         args:
           comment: |
             # ✨ gitStream Review ✨
-            {{ source | LinearB_AI("Code reviewer",
-              "Review the PR code diff.
+            {{ source | LinearB_AI(prompt="Review the PR code diff.
               - Identify bugs, security risks, and performance issues
               - Check for deprecated methods and style guide violations
-              - Provide specific improvement suggestions based on the changes", env.OPEN_AI_TOKEN) }}
+              - Provide specific improvement suggestions based on the changes") }}
