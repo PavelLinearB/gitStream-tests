@@ -31,7 +31,10 @@ automations:
         args:
           comment: |
             # ✨ gitStream Review 2 ✨
-            {{ source | LinearB_AI(prompt="Review the code diff and identify issues in bugs, performance, readability, or best practices.  
-              - Reference specific lines in the diff or relevant unchanged code for context.  
-              - Suggest improvements and, if possible, provide refactored code snippets for each issue.  
-              - Focus only on the changes and their immediate context; avoid unrelated general comments.") }}
+            {{ source | LinearB_AI(prompt="Perform a detailed code review of the provided diff. For each issue:
+              - Identify bugs, performance issues, and best practice violations.
+              - Reference the specific lines in the code diff for each issue.
+              - Provide clear, actionable suggestions and include refactored code snippets when applicable.
+              - Organize feedback into meaningful sections (e.g., Variable Declarations, Error Handling, Function Issues).
+              - Suggest general improvements (e.g., structure, modern syntax, logging) and illustrate them with examples.
+              Focus on actionable, specific feedback and avoid generic comments.) }}
