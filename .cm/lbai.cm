@@ -35,6 +35,6 @@ automations:
               - Identify bugs, performance issues, and best practice violations.
               - Reference the specific lines in the code diff for each issue.
               - Provide clear, actionable suggestions and include refactored code snippets when applicable.
-              - Organize feedback into meaningful sections (e.g., Variable Declarations, Error Handling, Function Issues).
+              - Organize feedback into meaningful sections like Variable Declarations, Error Handling, Function Issues, etc...
               - Suggest general improvements like structure, modern syntax, and logging, and illustrate them with examples.
               Focus on actionable, specific feedback and avoid generic comments.) }}
