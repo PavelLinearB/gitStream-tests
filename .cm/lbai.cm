@@ -14,14 +14,14 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            # ✨ gitStream Review 1 ✨
+            # ✨ gitStream Review. ✨
             {{ source | LinearB_AI(prompt="Perform a detailed code review based on the provided code diff. For each modified file:
               - Review the changes in the code diff and identify any bugs, performance issues, or areas for improvement in readability, maintainability, or adherence to best practices
               - If unchanged parts of the code are relevant to the modifications, include comments on them to provide a complete context for improvement
+              - Reference the specific lines of code from the diff and any relevant unchanged code in your comments
               - For each identified issue:
-                - Reference the specific lines of code from the diff and any relevant unchanged code in your comments
-                - Provide actionable suggestions
-                - Include a refactored code snippet formatted as a markdown code block, using a code diff format with + for additions and - for removals
+                - Use a collapsible section with a summary for the issue title, including the file name and line numbers
+                - Provide actionable suggestions and include a refactored code snippet formatted as a GitHub markdown code block, using a code diff format with + for additions and - for removals
                 - Clearly show how the improvement can be implemented in the relevant section of the code
               - Focus on actionable, specific feedback on the changes and their immediate context; avoid generic or unrelated comments.") }}
 
@@ -33,13 +33,13 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            # ✨ gitStream Review 2 ✨
-            {{ source | LinearB_AI(prompt="Perform a detailed code review based on the provided code diff. For each modified file:
-              - Review the changes in the code diff and identify any bugs, performance issues, or areas for improvement in readability, maintainability, or adherence to best practices
-              - If unchanged parts of the code are relevant to the modifications, include comments on them to provide a complete context for improvement
-              - For each identified issue:
-                - Reference the specific lines of code from the diff and any relevant unchanged code in your comments
-                - Use a collapsible section with a summary for the issue title
-                - Provide actionable suggestions and include a refactored code snippet formatted as a markdown code block, using a code diff format with + for additions and - for removals
-                - Clearly show how the improvement can be implemented in the relevant section of the code
-              - Focus on actionable, specific feedback on the changes and their immediate context; avoid generic or unrelated comments.") }}
+            # ✨ gitStream Review ✨
+            {{ source | LinearB_AI(prompt="Perform a detailed code review of the provided code diff. For each modified file:
+              - Identify bugs, performance issues, or areas for improvement in readability, maintainability, or adherence to best practices
+              - If relevant, include comments on unchanged code to provide complete context for improvement
+              - Reference specific lines of code from the diff and any related unchanged code in your comments
+              - For each issue:
+                - Use a collapsible section with a summary that includes the file name and line numbers
+                - Provide actionable suggestions with refactored code snippets in a GitHub markdown code block, using a diff format with + for additions and - for removals
+                - Clearly demonstrate how the improvement can be applied to the relevant section of code
+              - Focus on actionable, specific feedback about the changes and their immediate context; avoid generic or unrelated comments.") }}
