@@ -20,7 +20,7 @@ automations:
                 - If unchanged parts of the code are relevant to the modifications, include comments on them to provide a complete context for improvement
                 - Reference specific lines of code from the diff and any relevant unchanged code in your comments
                 - For each identified issue:
-                  - Use a collapsible section with a summary for the issue title, including a title,the file name and line numbers
+                  - Use a collapsible section with a summary for the issue title, including a title, the file name,e and line numbers
                   - Provide actionable suggestions and include a refactored code snippet formatted as a GitHub markdown code block, using a code diff format with + for additions and - for removals
                   - Clearly demonstrate how the improvement can be applied in the relevant section of the code
                 - Organize issues logically, grouping them by file name and sorting by line numbers within each file
@@ -42,5 +42,5 @@ automations:
                 - Use a collapsible section with a summary that includes the issue title, file name, and line numbers.
                 - Provide actionable suggestions with a refactored code snippet in GitHub markdown, using a code diff format (+ for additions, - for removals)
                 - Clearly demonstrate how the improvement can be implemented
-              - Organize issues logically by file name and line number within each file.
+              - Organize issues logically, order by file name and line number within each file.
               - Deliver actionable, specific feedback focused on the changes and their immediate context; avoid unrelated or generic comments.") }}
