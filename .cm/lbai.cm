@@ -9,19 +9,12 @@ triggers:
 automations:
   ask_ai_review:
     if:
-      - {{ pr.labels | match(term="LB CR") | some }}
+      - true
     run:
       - action: add-comment@v1
         args:
           comment: |
-            # ✨ gitStream Review 1 ✨
-            {{ source | LinearB_AI(prompt="Perform a detailed code review based on the provided code diff. For each modified file:
-              - Review the changes in the code diff and identify any bugs, performance issues, or areas for improvement in readability, maintainability, or adherence to best practices.
-              - If unchanged parts of the code are relevant to the modifications, include comments on them to provide a complete context for improvement.
-              - Reference the specific lines of code from the diff and any relevant unchanged code in your comments.
-              - For each identified issue, provide actionable suggestions and include a refactored code snippet whenever possible. Clearly show how the improvement can be implemented in the relevant section of the code.
-              - Focus on the changes and their immediate context; avoid general suggestions unrelated to the provided code diff.") }}
-
+            # ✨ !!!! ✨
 
   ask_ai_review2:
     if:
