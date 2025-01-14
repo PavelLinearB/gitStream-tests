@@ -36,11 +36,11 @@ automations:
             # ✨ gitStream Review ✨
             {{ source | LinearB_AI(prompt="Perform a detailed code review based on the provided code diff. For each modified file:
               - Analyze the changes and identify bugs, performance issues, or improvements in readability, maintainability, or adherence to best practices
-              - Include comments on unchanged code if relevant to the modifications for better context
+              - Include comments on unchanged code if relevant to the modifications to provide a complete context for improvement
               - Reference specific lines in the diff and any relevant unchanged code for each issue
               - For each issue:
-                - Use a collapsible section with a summary that includes the file name, line numbers and the issue title.
+                - Use a collapsible section with a summary that includes the issue title, file name, and line numbers.
                 - Provide actionable suggestions with a refactored code snippet in GitHub markdown, using a code diff format (+ for additions, - for removals)
                 - Clearly demonstrate how the improvement can be implemented
-              - Organize issues logically by file name and sort them by line number within each file. Don't group multiple issues under the same section.
+              - Organize issues logically by file name and line number within each file.
               - Deliver actionable, specific feedback focused on the changes and their immediate context; avoid unrelated or generic comments.") }}
