@@ -16,15 +16,16 @@ automations:
           comment: |
             # ✨ gitStream Review. ✨
             {{ source | LinearB_AI(prompt="Perform a detailed code review based on the provided code diff. For each modified file:
-                - Analyze the changes in the code and identify any bugs, performance issues, or improvements in readability, maintainability, or adherence to best practices
-                - If unchanged parts of the code are relevant to the modifications, include comments on them to provide a complete context for improvement
-                - Reference specific lines of code from the diff and any relevant unchanged code in your comments
-                - Organize issues by sorting them by the file name and line numbers within each file
-                - For each identified issue:
-                  - Use a collapsible section with title that consists of a short description, the file name, and line numbers
-                  - Provide actionable suggestions and include a refactored code snippet formatted as a GitHub markdown code block, using a code diff format with + for additions and - for removals
-                  - Clearly demonstrate how the improvement can be applied in the relevant section of the code
-                - Focus on actionable, specific feedback about the changes and their immediate context; avoid generic or unrelated comments.") }}
+              - Analyze the changes and identify only issues requiring further changes, such as bugs, performance issues, or improvements in readability, maintainability, or adherence to best practices
+              - Exclude descriptions of changes already implemented in the PR. Highlight only areas needing further action
+              - Include comments on unchanged code if relevant to the modifications
+              - Organize issues by file name and sort by line number
+              - For each issue:
+                - Use a collapsible section with a title that includes a short description, the file name, and line numbers
+                - Dynamically state the issue type (e.g., bugfix, performance, readability, etc..) based on its nature
+                - Provide actionable suggestions with refactored code snippets formatted as GitHub markdown using a diff format (+ for additions, - for removals)
+                - Demonstrate how to apply the suggested improvement in the code
+              - Focus strictly on actionable feedback requiring further work; avoid restating or describing changes already present") }}
 
   ask_ai_review2:
     if:
