@@ -7,6 +7,16 @@ triggers:
     - pr_created
 
 automations:
+  dump_source:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            --SOURCE DUMP:--
+            {{ source | dump | safe }}
+
   ask_ai_review:
     if:
       - {{ pr.labels | match(term="LB CR") | some }}
@@ -14,14 +24,18 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            # ✨ gitStream Review 1 ✨
+            # ✨ gitStream Review. ✨
             {{ source | LinearB_AI(prompt="Perform a detailed code review based on the provided code diff. For each modified file:
-              - Review the changes in the code diff and identify any bugs, performance issues, or areas for improvement in readability, maintainability, or adherence to best practices.
-              - If unchanged parts of the code are relevant to the modifications, include comments on them to provide a complete context for improvement.
-              - Reference the specific lines of code from the diff and any relevant unchanged code in your comments.
-              - For each identified issue, provide actionable suggestions and include a refactored code snippet whenever possible. Clearly show how the improvement can be implemented in the relevant section of the code.
-              - Focus on the changes and their immediate context; avoid general suggestions unrelated to the provided code diff.") }}
-
+              - Analyze the changes and identify only issues requiring further changes, such as bugs, performance issues, or improvements in readability, maintainability, or adherence to best practices
+              - Exclude descriptions of changes already implemented in the PR. Highlight only areas needing further action
+              - Include comments on unchanged code if relevant to the modifications
+              - Organize issues by file name and sort by line number
+              - For each issue:
+                - Use a collapsible section with a title that includes a short description, the file name, and line numbers
+                - Dynamically state the issue type (e.g., bugfix, performance, readability, etc..) based on its nature
+                - Provide actionable suggestions with refactored code snippets formatted as GitHub markdown using a diff format (+ for additions, - for removals)
+                - Demonstrate how to apply the suggested improvement in the code
+              - Focus strictly on actionable feedback requiring further work; avoid restating or describing changes already present") }}
 
   ask_ai_review2:
     if:
@@ -30,11 +44,14 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            # ✨ gitStream Review 2 ✨
-            {{ source | LinearB_AI(prompt="Perform a detailed code review of the provided diff. For each issue:
-              - Identify bugs, performance issues, and best practice violations.
-              - Reference the specific lines in the code diff for each issue.
-              - Provide clear, actionable suggestions and include refactored code snippets when applicable.
-              - Organize feedback into meaningful sections like Variable Declarations, Error Handling, Function Issues, etc...
-              - Suggest general improvements like structure, modern syntax, and logging, and illustrate them with examples.
-              Focus on actionable, specific feedback and avoid generic comments.) }}
+            # ✨ gitStream Review ✨
+            {{ source | LinearB_AI(prompt="Perform a detailed code review based on the provided code diff. For each modified file:
+              - Analyze the changes and identify bugs, performance issues, or improvements in readability, maintainability, or adherence to best practices
+              - Include comments on unchanged code if relevant to the modifications to provide a complete context for improvement
+              - Reference specific lines in the diff and any relevant unchanged code for each issue
+              - For each issue:
+                - Use a collapsible section with a summary that includes the issue title, file name, and line numbers.
+                - Provide actionable suggestions with a refactored code snippet in GitHub markdown, using a code diff format (+ for additions, - for removals)
+                - Clearly demonstrate how the improvement can be implemented
+              - Organize issues logically, order by file name and line number within each file.
+              - Deliver actionable, specific feedback focused on the changes and their immediate context; avoid unrelated or generic comments.") }}
