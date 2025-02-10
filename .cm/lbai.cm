@@ -7,6 +7,16 @@ triggers:
     - pr_created
 
 automations:
+  dump_source:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            --SOURCE DUMP:--
+            {{ source | dump | safe }}
+
   ask_ai_review:
     if:
       - {{ pr.labels | match(term="LB CR") | some }}
