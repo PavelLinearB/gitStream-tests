@@ -12,6 +12,8 @@ automations:
     # Only do this if there's no existing AI-related label and we haven't asked before
     if:
       - {{ pr.labels | match(regex=r/🤖 ai-*/) | nope }}
+      - {{ pr.author | match(list=copilot_contributors) | nope }}
+      - {{ pr.author | match(list=cursor_contributors) | nope }}
     run:
       - action: add-comment@v1
         args:
@@ -29,6 +31,34 @@ automations:
             - [ ] Other AI tool
             - [ ] No AI tools were used
 
-            Optional: If you'd like to provide additional details, please include:
-            - AI Service: [e.g., GitHub, Anthropic, OpenAI]
-            - AI Model: [e.g., GPT-4, Claude 3, Gemini Pro]
+            **Tip**: If you want to avoid this comment in the future, add a label of the format "🤖 ai-*" when creating your PR, or ask your admin to add you to the pre-defined lists of known users
+
+  label_copilot_known_users:
+    # For all PRs authored by someone who is specified in the genai_contributors list
+    if:
+      - {{ pr.author | match(list=copilot_contributors) | some  }}
+    # Apply a label indicating the user has adopted Copilot
+    run:
+      - action: add-label@v1
+        args:
+          label: '🤖 ai-copilot'
+
+label_cursor_known_users:
+    # For all PRs authored by someone who is specified in the genai_contributors list
+    if:
+      - {{ pr.author | match(list=cursor_contributors) | some  }}
+    # Apply a label indicating the user has adopted Copilot
+    run:
+      - action: add-label@v1
+        args:
+          label: '🤖 ai-cursor'
+
+copilot_contributors:
+  - username1
+  - username2
+  - etc
+
+cursor_contributors:
+  - username3
+  - username4
+  - etcc
