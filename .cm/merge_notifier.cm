@@ -1,0 +1,20 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+triggers:
+  on:
+    - merge
+
+automations:
+  merger:
+    if:
+      - true
+    run:
+      - action: send-http-request@v1
+        args:
+          url: https://hooks.slack.com/services/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
+          method: "POST"
+          body: '{"text": "*{{ pr.author }}* merged to *{{ repo.name }}*: {{ pr.url }} - {{ pr.source }} :merged: \n changelog: {{CHANGELOG}} "}'
+
+CHANGELOG: {{{{ source | askLBChangeLog(description=pr.description) }}
