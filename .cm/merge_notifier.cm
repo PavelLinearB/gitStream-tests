@@ -13,7 +13,7 @@ automations:
     run:
       - action: send-http-request@v1
         args:
-          url: https://hooks.slack.com/services/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
+          url: {{ env.SLACK_KEY }}
           method: "POST"
           body: '{"text": "*{{ pr.author }}* merged to *{{ repo.name }}*: {{ pr.url }} - {{ pr.source }} :merged: \n changelog: {{CHANGELOG}} "}'
 
