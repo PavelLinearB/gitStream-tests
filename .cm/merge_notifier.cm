@@ -4,7 +4,8 @@ manifest:
 
 triggers:
   on:
-    - merge
+    - pr_created
+    - commit
 
 automations:
   merger:
