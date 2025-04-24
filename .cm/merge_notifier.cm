@@ -18,4 +18,4 @@ automations:
           method: "POST"
           body: '{"text": "*{{ pr.author }}* merged to *{{ repo.name }}*: {{ pr.url }} - {{ pr.source }} :merged: \n changelog: {{CHANGELOG}} "}'
 
-CHANGELOG: {{{{ source | askLBChangeLog(description=pr.description) }}
+CHANGELOG: {{ source | askLBChangeLog(description=pr.description) | decode }}
