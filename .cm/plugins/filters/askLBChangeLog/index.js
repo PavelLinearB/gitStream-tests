@@ -169,6 +169,7 @@ const convertFilesForContext = source => {
 };
 
 const askLBChangeLog = async (source, description, callback) => {
+  console.log("askLBChangeLog starting"); 
   const formattedContext = convertFilesForContext(source);
 
   if (!formattedContext?.length) {
@@ -181,6 +182,7 @@ const askLBChangeLog = async (source, description, callback) => {
   const askLbEndpoint = RULES_RESOLVER_URL.replace('gitstream/resolve', 'gitstream/linearb_ai');
   const context = getLinearbAIContext();
 
+  console.log("requesting"); 
   const response = await fetch(askLbEndpoint, {
     method: 'POST',
     headers: {
@@ -198,6 +200,8 @@ const askLBChangeLog = async (source, description, callback) => {
   }
 
   const data = await response.json();
+  console.log(`response status: ${statusCode}`); 
+  console.log(`response: ${data}`); 
   const { statusCode, message } = data || {};
 
   if (statusCode !== 200) {
