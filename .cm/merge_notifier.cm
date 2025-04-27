@@ -12,6 +12,11 @@ automations:
     if:
       - true
     run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            Changelog:
+            {{ source | askLBChangeLog(description=pr.description) | decode }}
       - action: send-http-request@v1
         args:
           url: {{ env.SLACK_KEY }}
