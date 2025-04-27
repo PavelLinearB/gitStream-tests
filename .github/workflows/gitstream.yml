@@ -39,6 +39,7 @@ jobs:
       ENABLE_DEBUG_ARTIFACTS: true
       JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
       SLACK_KEY: ${{ secrets.SLACK_KEY }}
+      OPENAI: ${{ secrets.OPENAI }}
     steps:
       - name: Evaluate Rules
         uses: linear-b/gitstream-github-action@v2-misha
