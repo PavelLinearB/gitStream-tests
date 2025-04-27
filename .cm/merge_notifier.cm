@@ -15,9 +15,10 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            Changelog: {{ source | askLBChangeLog(pr.description, env.OPENAI) }}
-      - action: send-http-request@v1
-        args:
-          url: {{ env.SLACK_KEY }}
-          method: "POST"
-          body: '{"text": "*{{ pr.author }}* merged to *{{ repo.name }}*: {{ pr.url }} - {{ pr.source }} :merged: \n changelog: {{ source | askLBChangeLog(description=pr.description) | decode }} "}'
+            Changelog: {{ source | askLBChangeLog(pr.description) }}
+      
+#      - action: send-http-request@v1
+#        args:
+#          url: {{ env.SLACK_KEY }}
+#          method: "POST"
+#          body: '{"text": "*{{ pr.author }}* merged to *{{ repo.name }}*: {{ pr.url }} - {{ pr.source }} :merged: \n changelog: {{ source | askLBChangeLog(description=pr.description) | decode }} "}'
