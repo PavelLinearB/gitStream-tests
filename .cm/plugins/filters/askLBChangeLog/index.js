@@ -218,10 +218,6 @@ const convertFilesForContext = source => {
 };
 
 const askLBChangeLog = async (source, branch, files, description, callback) => {
-   return (await _askLBChangeLog(source, branch, files, description, CHANGELOG_PROMPT, callback));
-}
-
-const _askLBChangeLog = async (source, branch, files, description, prompt, callback) => {
   const formattedContext = convertFilesForContext(source);
 
   if (!formattedContext?.length) {
@@ -241,7 +237,7 @@ const _askLBChangeLog = async (source, branch, files, description, prompt, callb
       'Content-Type': 'application/json',
       Authorization: `Bearer ${RULES_RESOLVER_TOKEN}`
     },
-    body: JSON.stringify({ prompt, context, description, prContext })
+    body: JSON.stringify({ CHANGELOG_PROMPT, context, description, prContext })
   });
 
   if (!response.ok) {
