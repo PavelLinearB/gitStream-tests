@@ -15,7 +15,7 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            Changelog: {{ source | askLBChangeLog(pr.description) }}
+            Changelog: {{ source | askLbChangeLog(branch, files, pr.description) }}
       
 #      - action: send-http-request@v1
 #        args:
