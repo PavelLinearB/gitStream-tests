@@ -21,4 +21,4 @@ automations:
         args:
           url: {{ env.SLACK_KEY }}
           method: "POST"
-          body: '{"text": "*{{ pr.author }}* merged to *{{ repo.name }}*: {{ pr.url }} - {{ pr.source }} :merged: \n description: {{ source | AI_DescribePR() }} "}'
+          body: '{"text": "*{{ pr.author }}* merged to *{{ repo.name }}*: {{ pr.url }} - {{ pr.source }} :merged:. description: {{ source | AI_DescribePR }} "}'
