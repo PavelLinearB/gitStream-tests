@@ -1,0 +1,24 @@
+# -*- mode: yaml -*-
+manifest:
+  version: 1.0
+
+triggers:
+  on:
+    - pr_created
+    - commit
+
+automations:
+  merger:
+    if:
+      - true
+    run:
+      - action: add-comment@v1
+        args:
+          comment: |
+            Changelog: {{ source | AI_DescribePR }}
+      
+      - action: send-http-request@v1
+        args:
+          url: {{ env.SLACK_KEY }}
+          method: "POST"
+          body: '{"text": "*{{ pr.author }}* merged to *{{ repo.name }}*: {{ pr.url }} - {{ pr.source }} :merged: \n description: {{ source | AI_DescribePR() }} "}'
